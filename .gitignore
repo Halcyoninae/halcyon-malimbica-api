@@ -8,3 +8,4 @@ src/test
 *.bin
 /lib
 /out
+src/com/jackmeng/halcyon/malimbica/make

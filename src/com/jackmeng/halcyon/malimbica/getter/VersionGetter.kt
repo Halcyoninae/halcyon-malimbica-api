@@ -2,19 +2,30 @@ package com.jackmeng.halcyon.malimbica.getter
 
 import com.jackmeng.halcyon.malimbica.Getter
 import com.jackmeng.halcyon.malimbica.Lexer
-import java.util.HashMap
+import com.jackmeng.halcyon.malimbica.constants.Keys
 
+/**
+ * A specific getter that parses
+ * only version data.
+ *
+ * @author Jack Meng
+ * @since 1.0
+ */
 class VersionGetter(lexer: Lexer?) : Getter {
-    private val myMap: HashMap<Any, Any>
+    private val myLexer: Lexer?
 
     init {
         assert(lexer != null)
-        myMap = lexer!!.meta?.get(Lexer.VERSION_MAP)!!
+        myLexer = lexer
     }
 
-    override fun get(key: Any?): Any? {
+    override fun get(key: Any?): Any {
         assert(key === VERSION_KEY_NUM || key === VERSION_KEY_PRETTY || key === ITERATION_KEY_NUM || key === ITERATION_KEY_PRETTY)
-        return myMap[key]!!
+        return myLexer?.meta?.get(key)?.get(key)!!
+    }
+
+    override fun getContentMap(): HashMap<Any, Any>? {
+        return myLexer?.meta?.get(Keys.keys[Keys.KEY_VERSION])
     }
 
     companion object {

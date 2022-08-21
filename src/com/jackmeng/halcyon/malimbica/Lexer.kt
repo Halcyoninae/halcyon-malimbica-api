@@ -7,7 +7,14 @@ import java.lang.StringBuilder
 import java.lang.ClassNotFoundException
 import java.net.URL
 
-class Lexer @JvmOverloads constructor(override_url: String = "https://halcyoninae.github.io/halcyon-malimbica/schema/version.txt") {
+/**
+ * This class parses data from the web to be utilized later
+ * and can be parsed separately by Getters
+ *
+ * @author Jack Meng
+ * @since 1.0
+ */
+class Lexer @JvmOverloads constructor(override_url: String = "https://halcyoninae.github.io/halcyon-malimbica/schema.txt") {
     private val resourceLink: String
     var meta: HashMap<String, HashMap<Any, Any>>? = null
         private set
@@ -20,7 +27,6 @@ class Lexer @JvmOverloads constructor(override_url: String = "https://halcyonina
 
     private fun __init() {
         meta = HashMap()
-        // first part init version id
         try {
             val url = URL(resourceLink)
             val stream = BufferedReader(InputStreamReader(url.openStream()))

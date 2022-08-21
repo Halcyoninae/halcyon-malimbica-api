@@ -4,3 +4,7 @@
 .vscode
 .java
 .github
+src/test
+*.bin
+/lib
+/out
